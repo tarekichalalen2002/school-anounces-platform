@@ -1,0 +1,92 @@
+.Sidebar{
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  height: 100%;
+    background: var(--white-light);
+    color: var(--blue);
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+  #icon-head{
+    margin-bottom: 3rem;
+    font-size: 2rem;
+  }
+  .icon {
+    cursor: pointer;
+  }
+  
+  .icon.hovered {
+    color: var(--red); 
+  }
+
+  .menu {
+    height: 80%;
+    width: 100%;
+    font-size: 1.5rem;
+  }
+ 
+  
+
+ #option:hover {
+cursor: pointer;
+color: var(--red);
+} 
+
+  .menuItem {
+    display: grid;
+    width: 100%;
+    height: 13%;
+    grid-template-columns: 1fr 4fr 1fr;  
+    column-gap: 1rem;
+  }
+  
+  .menuItemLast{
+    display: flex;
+    flex-direction: row;
+    margin-top: 2rem;
+    width: 100%;
+    margin-left: 8rem;
+    gap: 1rem;
+    font-size: 1.8rem;
+  }
+  .menuItemLast:hover{
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+
+  /* Tablets */
+@media screen and (max-width: 1200px) {
+  .menuItemLast{
+    margin-left: 5rem;
+  }
+}
+
+@media screen and (max-width: 978px) {
+  .menuItem{
+    column-gap: 0.5rem;
+  }
+  .menuItemLast{
+    margin-left: 3rem;
+  }
+}
+
+@media screen and (max-width: 830px) {
+  .menuItem{
+    font-size: 1rem;
+  }
+  #icon-head{
+    font-size: 1rem;
+  }
+  .menuItemLast{
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Sidebar{
+    width: 25%;
+  }
+}

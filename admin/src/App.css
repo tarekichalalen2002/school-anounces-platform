@@ -1,0 +1,18 @@
+:root{
+  --blue:#326789;
+  --white-light:#E9EEF4;
+  --blue-claire:#78A6C8;
+  --red:#E65C4F;
+  --white:#ffff;
+  --black:#0000;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.App{
+  font-family: 'Inter','san-serif';
+  background: var(--white);
+  height: 100vh;
+}
