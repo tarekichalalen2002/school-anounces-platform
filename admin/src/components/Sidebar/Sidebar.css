@@ -24,7 +24,7 @@
   .menu {
     height: 80%;
     width: 100%;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
  
   
@@ -49,11 +49,11 @@ color: var(--red);
     width: 100%;
     margin-left: 8rem;
     gap: 1rem;
+    font-weight: bold;
     font-size: 1.8rem;
   }
   .menuItemLast:hover{
     cursor: pointer;
-    font-weight: bold;
   }
 
 
