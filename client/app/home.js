@@ -1,6 +1,13 @@
 import React,{useRef} from 'react';
 import { Text,View,StyleSheet,FlatList } from 'react-native';
-import {Header,Message,SendMesssageButton} from "../components"
+import {
+    Header,
+    Message,
+    SendMesssageButton,
+    SendMessageInput,
+    Sidebar,
+    DarknessLayer
+} from "../components"
 import {messages} from "../utils/lost_objects_messages"
 import state from '../state';
 
@@ -34,8 +41,11 @@ function Home(){
                         />
                     )}
                 />
-                <SendMesssageButton/>
+                <SendMesssageButton onPress={() => state.isInputShown=true}/>
+                <SendMessageInput/>
             </View>
+            <DarknessLayer />
+            <Sidebar />
         </View>
     )
 }

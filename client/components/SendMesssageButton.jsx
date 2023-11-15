@@ -51,6 +51,7 @@ const SendMesssageButton = ({onPress}) => {
             right: 10,
             gap: 10,
             elevation: 2,
+            zIndex:10,
         },
         text: {
             color: "white",
