@@ -29,7 +29,6 @@ const Message = ({ message, isFirstOfDay, isNew, title, date, isImageJoined, tim
         untoggleResponseInput()
       }
     },[isResponseinputToggled])
-
   return (
     <View 
     style={{
@@ -233,3 +232,5 @@ const styles = StyleSheet.create({
 });
 
 export default Message;
+
+

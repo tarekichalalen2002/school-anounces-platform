@@ -1,5 +1,6 @@
 import {View , Text , StyleSheet , TouchableOpacity , TextInput , Animated} from "react-native";
 import { colors } from "../utils/colors";
+import { Lost,Found, Shop } from "../assets/icons";
 const Sidebar = () => {
     return(
         <View
