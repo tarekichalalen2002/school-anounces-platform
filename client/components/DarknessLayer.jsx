@@ -1,9 +1,13 @@
-import {View} from "react-native";
+import {View,TouchableOpacity} from "react-native";
+import state from "../state";
+import { Animated } from "react-native";
+
 
 
 const DarknessLayer = () => {
     return(
-        <View
+        <TouchableOpacity
+            onPress={() => state.isSidebarShown = false}
             style={{
                 position:"absolute",
                 top:0,
@@ -12,10 +16,10 @@ const DarknessLayer = () => {
                 bottom:0,
                 zIndex:40,
                 backgroundColor:"black",
-                opacity:0.5
+                opacity:0.5,
             }}
             >
-        </View>
+        </TouchableOpacity>
     )
 }
 

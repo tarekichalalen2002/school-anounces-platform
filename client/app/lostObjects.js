@@ -10,8 +10,10 @@ import {
 } from "../components"
 import {messages} from "../utils/lost_objects_messages"
 import state from '../state';
+import { useSnapshot } from 'valtio';
 
 function Home(){
+    const snap = useSnapshot(state)
     const handleScroll = (e)=>{
         state.scollMessagesList = e.nativeEvent.contentOffset.y;
     }
@@ -44,7 +46,7 @@ function Home(){
                 <SendMesssageButton onPress={() => state.isInputShown=true}/>
                 <SendMessageInput/>
             </View>
-            <DarknessLayer />
+            {snap.isSidebarShown && <DarknessLayer/>}
             <Sidebar />
         </View>
     )

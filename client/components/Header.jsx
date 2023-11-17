@@ -1,13 +1,18 @@
-import { Text , View, StyleSheet } from 'react-native';
+import { Text , View, StyleSheet,TouchableOpacity } from 'react-native';
 import { colors } from '../utils/colors';
 import Icon from 'react-native-vector-icons/Entypo';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
+import state from '../state';
 
 const Header = ({currentTitle,isNotified}) => {
     return (
         <View style={styles.header}>
             <View style={styles.headerSubContainer}>
-                <Icon name="menu" size={35} color={colors.dark_blue} />
+                <TouchableOpacity
+                onPress={() => state.isSidebarShown = true}
+                >
+                    <Icon name="menu" size={35} color={colors.dark_blue} />
+                </TouchableOpacity>
                 <Text style={styles.title}># {currentTitle}</Text>
             </View>
             <View
