@@ -5,6 +5,7 @@ import SendMesssageButton from "./SendMesssageButton";
 import SendMessageInput from "./SendMessageInput";
 import Sidebar from "./Sidebar";
 import DarknessLayer from "./DarknessLayer";
+import ActivationButton from "./ActivationButton";
 
 export {
     Header,
@@ -14,4 +15,5 @@ export {
     SendMessageInput,
     Sidebar,
     DarknessLayer,
+    ActivationButton,
 }

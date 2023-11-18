@@ -13,7 +13,7 @@ const Header = ({currentTitle,isNotified}) => {
                 >
                     <Icon name="menu" size={35} color={colors.dark_blue} />
                 </TouchableOpacity>
-                <Text style={styles.title}># {currentTitle}</Text>
+                <Text style={styles.title}>{currentTitle}</Text>
             </View>
             <View
             style={{
