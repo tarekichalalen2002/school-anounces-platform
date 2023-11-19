@@ -73,6 +73,10 @@ const Sidebar = () => {
         }
     },[snap.isSidebarShown])
 
+    const handlePress = () => {
+        state.isSidebarShown = false
+    }
+
 
     const IconContainer = ({Icon,isNotified}) => {
         return (
@@ -112,7 +116,7 @@ const Sidebar = () => {
                     style = {styles.roomsContainer}
                     >
                     {defaultRooms.map((room,index) => (
-                        <TouchableOpacity key={index}>
+                        <TouchableOpacity key={index} onPress={handlePress}>
                             <View style={styles.roomContainer}>
                                 <IconContainer Icon={room.icon} isNotified={room.isNotified}/>
                                 <Text 
@@ -154,7 +158,7 @@ const Sidebar = () => {
                     style = {styles.roomsContainer}
                     >
                     {otherRooms.map((room,index) => (
-                        <TouchableOpacity key={index}>
+                        <TouchableOpacity key={index} onPress={handlePress}>
                         <View style={styles.roomContainer}>
                             <IconContainer Icon={room.icon} isNotified={room.isNotified}/>
                             <Text 
@@ -181,7 +185,7 @@ const Sidebar = () => {
                     ))}
                     </View>
                 </View>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={handlePress}>
                     <View
                     style={styles.addRoomContainer}
                     >
@@ -196,23 +200,18 @@ const Sidebar = () => {
             <View
             style={styles.footer}
             >
-                {/* <Text style={{color:"black", fontWeight:"800", fontSize:14}}>
-                    settings
-                </Text> */}
-                <TouchableOpacity>
-                    <Link
-                    href="/settings"
-                    >
-                        <Icon2 name="settings-sharp" color={colors.dark_blue} size={35}/>
-                    </Link>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <Link
-                    href="/login"
-                    >
-                        <Icon3 name="logout" color={colors.dark_blue} size={35}/>
-                    </Link>
-                </TouchableOpacity>
+                <Link
+                href="/settings"
+                onPress={handlePress}
+                >
+                    <Icon2 name="settings-sharp" color={colors.dark_blue} size={35}/>
+                </Link>
+                <Link
+                href="/login"
+                onPress={handlePress}
+                >
+                    <Icon3 name="logout" color={colors.dark_blue} size={35}/>
+                </Link>
             </View>
 
         </Animated.ScrollView>

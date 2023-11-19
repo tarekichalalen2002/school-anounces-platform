@@ -6,7 +6,11 @@ import state from "../state"
 import { useSnapshot } from "valtio"
 import { colors } from "../utils/colors"
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {ActivationButton} from "../components"
+import Icon2 from 'react-native-vector-icons/Ionicons';
+import Icon3 from 'react-native-vector-icons/FontAwesome5';
+import Icon4 from 'react-native-vector-icons/MaterialCommunityIcons'
+import { Link } from "expo-router"
+import { ActivationButton } from "../components"
 
 const Settings = () => {
     const snap = useSnapshot(state)
@@ -40,7 +44,70 @@ const Settings = () => {
                         <ActivationButton onPress={() => setIsNotificationEnabled(!isNotificationEnabled)} isActivated={isNotificationEnabled}/>
                     </View>
                 </View>
+                <View style={styles.setting}>
+                    <View
+                    style={styles.iconContainer}
+                    >
+                        <Icon2 name="moon" color={colors.dark_blue} size={20}/>
+                    </View>
+                    <View style={styles.settingTextContainer}>
+                        <Text style={styles.settingText}>Dark mode</Text>
+                    </View>
+                    <View>
+                        <ActivationButton onPress={() => setIsDarkModeEnabled(!isDarkModeEnabled)} isActivated={isDarkModeEnabled}/>
+                    </View>
+                </View>
+                <View style={styles.setting}>
+                    <View
+                    style={styles.iconContainer}
+                    >
+                        <Icon3 name="users" color={colors.dark_blue} size={20}/>
+                    </View>
+                    <View style={styles.settingTextContainer}>
+                        <Text style={styles.settingText}>My rooms</Text>
+                    </View>
+                    <View style={styles.rightChevContainer}>
+                        <Icon name="chevron-right" size={12} color={colors.dark_blue}/>
+                    </View>
+                </View>
+                <View style={styles.setting}>
+                    <View
+                    style={styles.iconContainer}
+                    >
+                        <Icon2 name="help-circle" color={colors.dark_blue} size={30}/>
+                    </View>
+                    <View style={styles.settingTextContainer}>
+                        <Text style={styles.settingText}>Help</Text>
+                    </View>
+                    <View style={styles.rightChevContainer}>
+                        <Icon name="chevron-right" size={12} color={colors.dark_blue}/>
+                    </View>
+                </View>
+                <View style={styles.setting}>
+                    <View
+                    style={styles.iconContainer}
+                    >
+                        <Link href="/login">
+                            <Icon4 name="logout" color={colors.dark_blue} size={30}/>
+                        </Link>
+                    </View>
+                    <View style={styles.settingTextContainer}>
+                        <Link href="/login">
+                            <Text style={styles.settingText}>Logout</Text>
+                        </Link>
+                    </View>
+                    <View style={styles.rightChevContainer}>
+                        <Icon name="chevron-right" size={12} color={colors.dark_blue}/>
+                    </View>
+                </View>
+                {/* <Link
+                href="/login"
+                >
+                    <Icon3 name="logout" color={colors.dark_blue} size={35}/>
+                </Link> */}
+
             </View>
+            
 
             {snap.isSidebarShown && <DarknessLayer/>}
             <Sidebar />
@@ -86,7 +153,7 @@ const styles = StyleSheet.create({
         paddingTop: 30,
         paddingLeft: 30,
         flexDirection: 'column',
-        gap: 20,
+        gap: 30,
     },
 
     iconContainer:{
@@ -104,6 +171,13 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: colors.dark_blue,
         fontWeight: 'bold',
+    },
+    rightChevContainer:{
+        width: 60,
+        height:"100%",
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
     }
 })
 export default Settings

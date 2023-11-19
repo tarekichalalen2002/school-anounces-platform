@@ -15,7 +15,7 @@ const Login = () => {
                     </View>
                 </Link>
             </TouchableOpacity>
-            <Image source={require("../assets/group-chat.png")} style={styles.illustration}/>
+            <Image source={require("../assets/group-chat-01.png")} style={styles.illustration}/>
         </View>
     )
 }
