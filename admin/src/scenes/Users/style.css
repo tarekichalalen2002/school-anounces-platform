@@ -1,0 +1,201 @@
+#container{
+    width: 100%;
+    height: 100%;
+}
+#result-container{
+    width: 100%;
+}
+img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .head{
+    width: 100%;
+    height: 18.7%;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  }
+  .top-container{
+    width: 80%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+  table{
+    margin-top: 0.5rem;
+    margin-left: 4rem;
+    width: 80%;
+    color: var(--blue);
+  }
+  th, td {
+    padding: 3px;
+    text-align: center;
+  }
+  
+  #search-container {
+    width: 50%;
+    margin: 2rem;
+    height: 40px;
+    margin-left: 12rem;
+    margin-top: 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--blue);
+    line-height: 1;
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    color: var(--blue);
+  }
+  select{
+    border:1px solid var(--blue);
+    border-radius: 10px;
+    width:90px;
+    font-size: 16px;
+    line-height: 1;
+    text-align: center;
+    font-weight: 600;
+    display: inline-flex;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    height:30px;
+    background-color: var(--white);
+    color: var(--blue);
+  }
+  input{
+    width: 80%;
+    border: none;
+    color: var(--blue);
+  }
+  .actions{
+    width: 40%;
+    height: 10%;
+    display: flex;
+    margin-left: 15rem;
+    gap:1rem;
+    font-weight: 600;
+    color: var(--blue);
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  h1{
+    padding: 1rem;
+    color: var(--blue);
+  }
+
+button {
+  align-items: center;
+  background-color: var(--white);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-top-right-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  color: var(--blue);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  height: 38.98px;
+  position: relative;
+  width: 20%;
+}
+
+button:hover,
+button:focus {
+  color: var(--white);
+  background-color: var(--blue-claire);
+}
+
+.ellipsis-container {
+  position: relative;
+  display: inline-block;
+}
+
+.ellipsis-icon {
+  cursor: pointer;
+}
+
+.options-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 150px;
+  border-radius: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.options-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.options-menu li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.options-menu li:hover {
+  background-color: #f5f5f5;
+}
+h3{
+  color: var(--blue);
+  padding: 1.5rem;
+}
+.drop-container{
+width: 22rem;
+height: 8rem;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 15px;
+border: 1.8px dashed #1f2427;
+background: var(--white-light);
+}
+.room-container {
+  display: inline-block;
+  margin: 10px;
+  max-width: 300px; 
+}
+
+.room-container button {
+  font-size: 12px; 
+  width: 50px;
+}
+
+
+/* .progress-bar {
+  height: 10px; 
+  background-color: #e0e0e0; /* Couleur de fond de la barre de progression (gris dans cet exemple) */
+
+
+/* .progress-bar-filled {
+  height: 100%;
+  width: var(--percentage-approved, 0%);
+  background-color: #446445; /* Couleur de la barre de progression remplie (vert dans cet exemple) */
+  /*transition: width 0.3s ease; /* Ajoute une transition pour une animation fluide */
+/*} */
+
+
+@media screen and (max-width: 1200px) {
+  
+}
+
+@media screen and (max-width: 978px) {
+  
+}
+
+@media screen and (max-width: 830px) {
+  
+}
+
+@media screen and (max-width: 768px) {
+  
+}
