@@ -6,6 +6,7 @@ import SendMessageInput from "./SendMessageInput";
 import Sidebar from "./Sidebar";
 import DarknessLayer from "./DarknessLayer";
 import ActivationButton from "./ActivationButton";
+import WelcomeSection from "./WelcomeSection";
 
 export {
     Header,
@@ -16,4 +17,5 @@ export {
     Sidebar,
     DarknessLayer,
     ActivationButton,
+    WelcomeSection
 }
