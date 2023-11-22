@@ -120,6 +120,7 @@ const styles = StyleSheet.create({
     },
     headerContainer: {
         height: 75,
+        zIndex: 1,
     },
     banner:{
         height: 88,

@@ -3,6 +3,8 @@ import { colors } from '../utils/colors';
 import Icon from 'react-native-vector-icons/Entypo';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import state from '../state';
+import React from 'react';
+import { Link } from 'expo-router';
 
 const Header = ({currentTitle,isNotified}) => {
     return (
@@ -15,14 +17,16 @@ const Header = ({currentTitle,isNotified}) => {
                 </TouchableOpacity>
                 <Text style={styles.title}>{currentTitle}</Text>
             </View>
-            <View
-            style={{
-                position: "relative",
-            }}
-            >
-                <Icon2 name="bell" size={28} color={colors.dark_blue} />
-                {isNotified && (<View style={styles.notifIndicator} />)}
-            </View>
+            <Link href="/notifications">
+                <View
+                style={{
+                    position: "relative",
+                }}
+                >
+                    <Icon2 name="bell" size={28} color={colors.dark_blue} />
+                    {isNotified && (<View style={styles.notifIndicator} />)}
+                </View>
+            </Link>
         </View>
     )
 }

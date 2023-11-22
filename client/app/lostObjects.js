@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
     },
     headerContainer: {
         height: 75,
+        zIndex: 1,
     },
     messagesFeed: {
         flex: 1,
