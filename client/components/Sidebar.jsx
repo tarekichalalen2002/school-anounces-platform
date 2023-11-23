@@ -116,7 +116,7 @@ const Sidebar = () => {
                     style = {styles.roomsContainer}
                     >
                     {defaultRooms.map((room,index) => (
-                        <TouchableOpacity key={index} onPress={handlePress}>
+                        <Link href={`/rooms/${room.title}`} key={index} onPress={handlePress}>
                             <View style={styles.roomContainer}>
                                 <IconContainer Icon={room.icon} isNotified={room.isNotified}/>
                                 <Text 
@@ -139,7 +139,7 @@ const Sidebar = () => {
                                     }}></View>
                                 )}
                             </View>
-                        </TouchableOpacity>
+                        </Link>
                     ))}
                     </View>
                 </View>
