@@ -11,17 +11,17 @@ import { colors } from "../utils/colors";
 const ActivationButton = ({ onPress, isActivated }) => {
   const value = useState(new Animated.Value(isActivated ? 31 : 2))[0];
   const setOff = () => {
-    Animated.timing(value, {
+    Animated.spring(value, {
       toValue: 2,
       duration: 200,
-      useNativeDriver: false,
+      useNativeDriver: true,
     }).start();
   };
   const setOn = () => {
-    Animated.timing(value, {
+    Animated.spring(value, {
       toValue: 31,
       duration: 200,
-      useNativeDriver: false,
+      useNativeDriver: true,
     }).start();
   };
   useEffect(() => {
@@ -49,7 +49,8 @@ const ActivationButton = ({ onPress, isActivated }) => {
       backgroundColor: isActivated ? colors.lentils_orange : colors.dark_blue,
       borderRadius: 50,
       top: 2,
-      left: value,
+      left: 0,
+      transform: [{ translateX: value }],
     },
   });
   return (

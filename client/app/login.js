@@ -8,7 +8,7 @@ const Login = () => {
         <View style={styles.container}>
             <Image source={require("../assets/logo-estin.png")} style={styles.logo}/>    
             <TouchableOpacity style={styles.loginButton}>
-                <Link href="/lostObjects" >
+                <Link href="/rooms/0" >
                     <View style={styles.buttonContainer}>
                         <Text style={styles.buttonText}>Continue with Google @estin.dz </Text>
                         <Google />

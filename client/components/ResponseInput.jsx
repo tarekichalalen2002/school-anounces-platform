@@ -25,13 +25,13 @@ const SendMessageInput = () => {
         }).start()
     }
     useEffect(() => {
-        if(snap.isInputShown){
+        if(snap.isResponseInputShown){
             showInput()
         }else{
             hideInput()
         }
-        console.log(snap.isInputShown);
-    },[snap.isInputShown])
+        console.log(snap.isResponseInputShown);
+    },[snap.isResponseInputShown])
     const styles = StyleSheet.create({
         container: {
             height: "100%",
@@ -41,7 +41,7 @@ const SendMessageInput = () => {
             transform: [{translateY:value}],
             left: 0,
             right: 0,
-            display: snap.isInputShown ? "flex" : "none",
+            display: snap.isResponseInputShown ? "flex" : "none",
             flexDirection: "column",
         },
         header: {
@@ -99,20 +99,17 @@ const SendMessageInput = () => {
     return (
         <Animated.View style={styles.container}>
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => state.isInputShown = false}>
+                <TouchableOpacity onPress={() => state.isResponseInputShown = false}>
                     <Icon name="arrowleft" size={24} color={colors.dark_blue} />
                 </TouchableOpacity>
                 <Text
                 style={styles.headerText}
                 >
-                    New message
+                    Respond to {snap.messageResponseData.sender}
                 </Text>
                 <View
                 style={styles.subHeader}
                 >
-                    <TouchableOpacity>
-                        <Icon2 name="camera" size={22} color={colors.dark_blue} />
-                    </TouchableOpacity>
                     <TouchableOpacity>
                         <Icon3 name="send" size={22} color={colors.dark_blue} />
                     </TouchableOpacity>
@@ -120,10 +117,15 @@ const SendMessageInput = () => {
             </View>
             <View style={styles.messageForm}>
                 <View style={styles.titleInputContainer}>
-                    <TextInput
-                    style={styles.titleInput}
-                    placeholder="Title ..."
-                    />
+                    <Text style={{
+                        fontSize: 15,
+                        padding: 10,
+                        fontWeight:"400",
+                        color: colors.dark_blue,
+                    }}
+                    >
+                        About: {snap.messageResponseData.title}
+                    </Text>
                 </View>
                 <View style={styles.messageInputContainer}>
                     <TextInput

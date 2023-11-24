@@ -1,16 +1,16 @@
-import React,{useState,useEffect} from "react";
-import {Text, View, StyleSheet, TouchableOpacity, Animated} from "react-native";
+import React,{useState,useEffect,useRef} from "react";
+import {Text, View, StyleSheet, TouchableOpacity, Animated, Dimensions} from "react-native";
 import { colors } from "../utils/colors";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { useSnapshot } from "valtio";
 import state  from "../state";
 
 
-const SendMesssageButton = ({onPress}) => {
-    const [isTextShown, setIsTextShown] = useState(true);
+const SendMesssageButton = ({onPress,messagesListHeight,scrollMessagesList,slug}) => {
+    const [isTextShown, setIsTextShown] = useState(false);
     const snap = useSnapshot(state)
-    // console.log(snap.messagesListHeight-snap.scollMessagesList > 50)
-    const value = useState(new Animated.Value(200))[0]
+    // console.log(snap.messagesListHeight-snap.scrollMessagesList > 50)
+    const value = useRef(new Animated.Value(200)).current
     const hideText = () => {
         Animated.timing(value,{
             toValue:50,
@@ -25,8 +25,10 @@ const SendMesssageButton = ({onPress}) => {
             useNativeDriver:false,
         }).start()
     }
+    const windowHeight = Dimensions.get("window").height
     useEffect(() => {
-        if(snap.messagesListHeight-snap.scollMessagesList > 50){
+        setIsTextShown(false)
+        if(scrollMessagesList + windowHeight < messagesListHeight - 50){
             hideText()
             setIsTextShown(false)
         }else{
@@ -35,7 +37,7 @@ const SendMesssageButton = ({onPress}) => {
                 setIsTextShown(true)
             }, 200);
         }
-    },[snap.messagesListHeight-snap.scollMessagesList > 50])
+    },[scrollMessagesList +windowHeight < messagesListHeight - 50])
 
     const styles = StyleSheet.create({
         container: {

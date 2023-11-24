@@ -11,7 +11,7 @@ import { Link } from "expo-router"
 
 const defaultRooms = [
     {
-        title:"Lost objects",
+        title:"Lost objectsss",
         icon:Lost,
         isNotified:false,
         isCurrent:true,
@@ -51,17 +51,17 @@ const Sidebar = () => {
     const snap = useSnapshot(state)
     const value = useState(new Animated.Value(-400))[0]
     const toggleSidebar = () => {
-        Animated.timing(value, {
+        Animated.spring(value, {
             toValue: 0,
             duration: 500,
-            useNativeDriver: false,
+            useNativeDriver: true,
         }).start()
     }
     const hideSidebar = () => {
-        Animated.timing(value, {
+        Animated.spring(value, {
             toValue: -400,
             duration: 500,
-            useNativeDriver: false,
+            useNativeDriver: true,
         }).start()
     }
 
@@ -95,7 +95,7 @@ const Sidebar = () => {
     }
     return(
         <Animated.ScrollView
-        style={{...styles.container,left:value}}
+        style={{...styles.container,left:-20,transform:[{translateX:value}]}}
         >
             <View style={{
                 width:"100%",
@@ -116,7 +116,7 @@ const Sidebar = () => {
                     style = {styles.roomsContainer}
                     >
                     {defaultRooms.map((room,index) => (
-                        <Link href={`/rooms/${room.title}`} key={index} onPress={handlePress}>
+                        <Link href={`/rooms/${index}`} key={index} onPress={handlePress}>
                             <View style={styles.roomContainer}>
                                 <IconContainer Icon={room.icon} isNotified={room.isNotified}/>
                                 <Text 
@@ -220,7 +220,8 @@ const Sidebar = () => {
 const styles = StyleSheet.create({
     container:{
         position:"absolute",
-        width:"80%",
+        width:"90%",
+        paddingLeft:30,
         height:"auto",
         top:0,
         bottom:0,

@@ -3,8 +3,13 @@ import { Text, View, StyleSheet, Image, TouchableOpacity, Animated,TextInput } f
 import { colors } from "../utils/colors";
 import Icon from "react-native-vector-icons/Ionicons";
 import DateSeparator from "./DateSeparator";
+import state from "../state";
+// import { ResponseInput } from "./ResponseInput";
+// import state from "../state";
+// import { useSnapshot } from "valtio";
 
 const Message = ({ message, isFirstOfDay, isNew, title, date, isImageJoined, time }) => {
+  // const snap = useSnapshot(state)
   const [isResponseinputToggled, setIsResponseinputToggled] = useState(false);
   const responseInputHeight = 100
     const value = useState(new Animated.Value(0))[0]
@@ -71,60 +76,21 @@ const Message = ({ message, isFirstOfDay, isNew, title, date, isImageJoined, tim
               </View>
             </View>
           )}
-        {isResponseinputToggled ? (
-          // _________________________________________________________________________________________________________________
-          <Animated.View
-          style={{
-            borderRadius:5,
-            height: 100,
-            position:"relative",
-            height:value,
-            marginTop:10,
-            flexWrap:"wrap",
-            borderWidth:0.5,
-            backgroundColor:"white",
-            }}
-          >
-            <View
-            style={styles.responseOptions}
-            onPress={() => setIsResponseinputToggled(false)}
-            >
-              <TouchableOpacity
-              onPress={() => setIsResponseinputToggled(false)}
-              >
-                <Icon name="close" color={colors.lentils_orange} size={20}/>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Icon name="send" color={colors.dark_blue} size={15}/>
-              </TouchableOpacity>
-            </View>
-            <TextInput 
-            placeholder="Type your response here..."
-            multiline={true}
-            numberOfLines={3}
-            style={{
-              width:200,
-              borderColor:colors.dark_blue,
-              borderRadius:5,
-              padding:10,
-              flexWrap:"wrap",
-            }}
-            />
-          </Animated.View>
-          // _________________________________________________________________________________________________________________
-
-        ) : (
           <View
           style={styles.respondButtonWrapper}
           >
             <TouchableOpacity style={styles.respondButton}
-            onPress={() => setIsResponseinputToggled(true)}
+            onPress={() => {
+              state.isResponseInputShown = true
+              state.messageResponseData = {
+                title,sender:"John"
+              }
+            }}
             >
               <Text style={styles.buttonText}>Respond</Text>
               <Icon name="send" color="white"/>
             </TouchableOpacity>
           </View>
-        )}
       </View>
       
     </View>
@@ -133,6 +99,7 @@ const Message = ({ message, isFirstOfDay, isNew, title, date, isImageJoined, tim
 };
 const styles = StyleSheet.create({
   container: {
+    width: "100%",
     backgroundColor: colors.light_blue,
     borderRadius: 10,
     flexDirection: "row",
@@ -151,6 +118,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   messageContent: {
+    width: "80%",
     paddingTop: 12,
     paddingBottom: 10,
     paddingHorizontal: 5,
