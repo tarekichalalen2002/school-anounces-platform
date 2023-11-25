@@ -6,7 +6,6 @@ import Icon2 from "react-native-vector-icons/Entypo";
 import Icon3 from "react-native-vector-icons/Ionicons";
 import state from "../state";
 import { useSnapshot } from "valtio";
-
 const SendMessageInput = () => {
     const snap = useSnapshot(state)
     const value = useState(new Animated.Value(800))[0]

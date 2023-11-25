@@ -185,7 +185,7 @@ const Sidebar = () => {
                     ))}
                     </View>
                 </View>
-                <TouchableOpacity onPress={handlePress}>
+                <Link href="/addRoom" onPress={handlePress}>
                     <View
                     style={styles.addRoomContainer}
                     >
@@ -194,7 +194,7 @@ const Sidebar = () => {
                             Create my own room ...
                         </Text>
                     </View>
-                </TouchableOpacity>
+                </Link>
 
             </View>
             <View
