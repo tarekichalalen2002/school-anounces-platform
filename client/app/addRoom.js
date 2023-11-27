@@ -60,7 +60,7 @@ const AddRoom = () => {
     return (
         <SafeAreaView style={styles.container}>
             <Link href="/rooms/0" style={{position:"absolute",left:20,top:10}}>
-                <Icon name="close" size={30} color={colors.dark_blue}/>
+                <Icon name="close" size={23} color={colors.dark_blue}/>
             </Link>
             <Text style={styles.title}>
                 Create a new room

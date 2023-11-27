@@ -8,6 +8,7 @@ import DarknessLayer from "./DarknessLayer";
 import ActivationButton from "./ActivationButton";
 import WelcomeSection from "./WelcomeSection";
 import ResponseInput from "./ResponseInput";
+import MessagesLoading from "./MessagesLoading";
 
 export {
     Header,
@@ -20,4 +21,5 @@ export {
     ActivationButton,
     WelcomeSection,
     ResponseInput,
+    MessagesLoading
 }
