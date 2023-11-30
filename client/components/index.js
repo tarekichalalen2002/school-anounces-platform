@@ -9,6 +9,7 @@ import ActivationButton from "./ActivationButton";
 import WelcomeSection from "./WelcomeSection";
 import ResponseInput from "./ResponseInput";
 import MessagesLoading from "./MessagesLoading";
+import OrdinaryLoading from "./OrdinaryLoading";
 
 export {
     Header,
@@ -21,5 +22,6 @@ export {
     ActivationButton,
     WelcomeSection,
     ResponseInput,
-    MessagesLoading
+    MessagesLoading,
+    OrdinaryLoading
 }

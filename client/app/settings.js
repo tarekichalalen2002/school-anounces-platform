@@ -61,13 +61,19 @@ const Settings = () => {
                     <View
                     style={styles.iconContainer}
                     >
-                        <Icon3 name="users" color={colors.dark_blue} size={20}/>
+                        <Link href="/myRooms">
+                            <Icon3 name="users" color={colors.dark_blue} size={20}/>
+                        </Link>
                     </View>
                     <View style={styles.settingTextContainer}>
-                        <Text style={styles.settingText}>My rooms</Text>
+                        <Link href="/myRooms">
+                            <Text style={styles.settingText}>My Rooms</Text>
+                        </Link>
                     </View>
                     <View style={styles.rightChevContainer}>
-                        <Icon name="chevron-right" size={12} color={colors.dark_blue}/>
+                        <Link href="/myRooms">
+                            <Icon name="chevron-right" size={12} color={colors.dark_blue}/>
+                        </Link>
                     </View>
                 </View>
                 <View style={styles.setting}>
@@ -100,11 +106,6 @@ const Settings = () => {
                         <Icon name="chevron-right" size={12} color={colors.dark_blue}/>
                     </View>
                 </View>
-                {/* <Link
-                href="/login"
-                >
-                    <Icon3 name="logout" color={colors.dark_blue} size={35}/>
-                </Link> */}
 
             </View>
             

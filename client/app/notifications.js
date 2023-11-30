@@ -127,32 +127,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "700",
     overflow:"scroll"
-  }
+  },
 });
 
 export default Notifications;
-
-// // Render each item
-// const renderItem = ({ item }) => (
-//   <View>
-//     <Text>{item.text}</Text>
-//   </View>
-// );
-
-// // Render section header
-// const renderSectionHeader = ({ section }) => (
-//   <View>
-//     {/* Render your dynamic separator component here */}
-//     <Text>{section.title}</Text>
-//   </View>
-// );
-
-// return (
-//   <SectionList
-//     sections={data}
-//     renderItem={renderItem}
-//     renderSectionHeader={renderSectionHeader}
-//     keyExtractor={(item) => item.key}
-//   />
-// );
-// };

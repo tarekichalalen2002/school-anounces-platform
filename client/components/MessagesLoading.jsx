@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Animated } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useState, useEffect } from "react";
 
-const MessagesLoading = () => {
+const MessagesLoading = ({color,size}) => {
   const value = useState(new Animated.Value(0.8))[0];
   const fadeDown = Animated.timing(value, {
     toValue:0.2,
@@ -27,7 +27,7 @@ const MessagesLoading = () => {
           opacity: value,
         }}
       >
-        <Icon name="chatbubble-ellipses-outline" size={40} />
+        <Icon name="chatbubble-ellipses-outline" size={size} color={color}/>
       </Animated.View>
     </View>
   );
