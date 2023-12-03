@@ -1,0 +1,4 @@
+firstname,lastname,email,mobile,password,role,isBlocked,refreshToken,passwordChangedAt,passwordResetToken,passwordResetExpires
+John,Doe,john.doe@example.com,1234567890,securepassword,student,false,randomRefreshToken,,,,
+Jane,Smith,jane.smith@example.com,9876543210,strongpassword,admin,true,anotherRefreshToken,,,,
+Alice,Johnson,alice.johnson@example.com,5551234567,safeandsecure,student,false,yetAnotherToken,,,,
