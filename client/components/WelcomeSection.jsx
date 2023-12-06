@@ -8,10 +8,6 @@ const WelcomeSection = () => {
     const [currentPage,setCurrentPage] = useState(0);
     const value = useState(new Animated.Value(0))[0];
     const [screenWidth, setScreenWidth] = useState(Dimensions.get('window').width);
-    console.log(screenWidth);
-    useEffect(() => {
-        console.log(value);
-    },[value])
     const slideLeft = () => {
         Animated.spring(value,{
             toValue:0,

@@ -9,7 +9,6 @@ import state  from "../state";
 const SendMesssageButton = ({onPress,messagesListHeight,scrollMessagesList,slug}) => {
     const [isTextShown, setIsTextShown] = useState(false);
     const snap = useSnapshot(state)
-    // console.log(snap.messagesListHeight-snap.scrollMessagesList > 50)
     const value = useRef(new Animated.Value(200)).current
     const hideText = () => {
         Animated.timing(value,{

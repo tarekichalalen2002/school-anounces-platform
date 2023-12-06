@@ -29,7 +29,6 @@ const SendMessageInput = () => {
         }else{
             hideInput()
         }
-        console.log(snap.isInputShown);
     },[snap.isInputShown])
     const styles = StyleSheet.create({
         container: {

@@ -30,7 +30,6 @@ const SendMessageInput = () => {
         }else{
             hideInput()
         }
-        console.log(snap.isResponseInputShown);
     },[snap.isResponseInputShown])
     const styles = StyleSheet.create({
         container: {

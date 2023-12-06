@@ -10,6 +10,7 @@ import WelcomeSection from "./WelcomeSection";
 import ResponseInput from "./ResponseInput";
 import MessagesLoading from "./MessagesLoading";
 import OrdinaryLoading from "./OrdinaryLoading";
+import UsersList from "./UsersList";
 
 export {
     Header,
@@ -23,5 +24,6 @@ export {
     WelcomeSection,
     ResponseInput,
     MessagesLoading,
-    OrdinaryLoading
+    OrdinaryLoading,
+    UsersList,
 }
