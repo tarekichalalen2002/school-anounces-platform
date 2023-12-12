@@ -81,7 +81,7 @@ const WelcomeSection = () => {
             fontSize:20,
             textAlign:'center',
             fontWeight:'bold',
-            color:colors.lentils_orange,
+            color:colors.dark_blue,
         },
         text:{
             fontSize:15,

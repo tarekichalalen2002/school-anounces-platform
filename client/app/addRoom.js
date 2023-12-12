@@ -4,6 +4,8 @@ import {Link} from 'expo-router';
 import { colors } from '../utils/colors';
 import { users } from '../utils/users';
 import Icon from "react-native-vector-icons/AntDesign";
+import  Icon2  from 'react-native-vector-icons/FontAwesome5';
+                
 
 const AddRoom = () => {
     const [studentsListToggled, setStudentsListToggled] = useState(false);
@@ -40,7 +42,7 @@ const AddRoom = () => {
     return (
         <SafeAreaView style={styles.container}>
             <Link href="/rooms/0" style={{position:"absolute",left:20,top:10}}>
-                <Icon name="close" size={23} color={colors.dark_blue}/>
+                <Icon2 name='arrow-left' size={22} color={colors.dark_blue}/>
             </Link>
             <Text style={styles.title}>
                 Create a new room

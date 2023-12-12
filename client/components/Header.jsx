@@ -2,11 +2,13 @@ import { Text , View, StyleSheet,TouchableOpacity } from 'react-native';
 import { colors } from '../utils/colors';
 import Icon from 'react-native-vector-icons/Entypo';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
-import state from '../state';
 import React from 'react';
 import { Link } from 'expo-router';
+import { useSnapshot } from 'valtio';
+import state from '../state';
 
-const Header = ({currentTitle,isNotified}) => {
+const Header = ({currentTitle}) => {
+    const snap = useSnapshot(state)
     return (
         <View style={styles.header}>
             <View style={styles.headerSubContainer}>
@@ -17,14 +19,14 @@ const Header = ({currentTitle,isNotified}) => {
                 </TouchableOpacity>
                 <Text style={styles.title}>{currentTitle}</Text>
             </View>
-            <Link href="/notifications">
+            <Link href="/notifications" onPress={() => state.isNotified = false}>
                 <View
                 style={{
                     position: "relative",
                 }}
                 >
                     <Icon2 name="bell" size={28} color={colors.dark_blue} />
-                    {isNotified && (<View style={styles.notifIndicator} />)}
+                    {snap.isNotified && (<View style={styles.notifIndicator} />)}
                 </View>
             </Link>
         </View>
