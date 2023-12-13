@@ -28,9 +28,10 @@ const UserHeader = () => {
   };
 return (
   <div id="container">
+        
     <div className='head'>
     <h1>Users</h1>
-    <div id="button-container">
+    <div id="button-container" style={{display:'flex'}}>
       <button
         className={`button ${activeTab === 'list' ? 'active' : ''}`}
         onClick={() => handleButtonClick('list')}
@@ -52,7 +53,7 @@ return (
     </div>
     </div>
 
-    <div id="result-container">
+    <div id="result-container" >
       {activeTab === 'list' && <ListUsers />}
       {activeTab === 'add' && <div><AddUsers /></div>}
       {activeTab === 'admin' && <div>< AdminRooms/></div>}

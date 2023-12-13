@@ -8,14 +8,14 @@ import profileImage1 from '../scenes/Users/assets/Profile-Male-PNG.png';
 const sampleUsers = [
     {
       id: 1,
-      fullName: 'Wail Factory',
+      fullName: 'Wail ninou',
       email: 'wail@estin.dz',
       dateJoining: '2023-01-01',
       profileImage: profileImage1,
     },
     {
       id: 2,
-      fullName: 'Amel mam',
+      fullName: 'Amel mamal',
       email: 'amel@estin.dz',
       dateJoining: '2023-03-01',
       profileImage: profileImage1,
@@ -41,16 +41,16 @@ const sampleUsers = [
     const [selectAll, setSelectAll] = useState(false);
     const [selectedUsers, setSelectedUsers] = useState([]);
     const [selectedAction, setSelectedAction] = useState('');
-  
+    const [isAddToRoomHovered, setIsAddToRoomHovered] = useState(false);
     const handleSearch = (e) => {
       setSearchTerm(e.target.value);
     };
-  
+    
     const handleSelectAll = () => {
       setSelectAll(!selectAll);
       setSelectedUsers(selectAll ? [] : sampleUsers.map((user) => user.id));
     };
-  
+    
     const handleSelectUser = (userId) => {
       if (selectedUsers.includes(userId)) {
         setSelectedUsers(selectedUsers.filter((id) => id !== userId));
@@ -62,18 +62,6 @@ const sampleUsers = [
     const handleActionChange = (e) => {
       setSelectedAction(e.target.value);
     };
-  
-    // const handlePerformAction = () => {
-    //   if (selectedAction === 'delete') {
-    //     // Logique pour supprimer les utilisateurs sélectionnés
-    //     console.log(`Supprimer les utilisateurs : ${selectedUsers.join(', ')}`);
-    //     // Appeler une fonction pour supprimer les utilisateurs dans votre application
-    //   } else if (selectedAction === 'updateRole') {
-    //     // Logique pour mettre à jour le rôle des utilisateurs sélectionnés
-    //     console.log(`Mettre à jour le rôle des utilisateurs : ${selectedUsers.join(', ')}`);
-    //     // Appeler une fonction pour mettre à jour le rôle dans votre application
-    //   }
-    // };
   
     return (
       <div style={{height:'81.2%'}}>
@@ -94,13 +82,25 @@ const sampleUsers = [
           </label>
           <div id='options'>
             <label >
-              <select value={selectedAction} onChange={handleActionChange} style={{}}>
+            <select
+           value={selectedAction}
+           onChange={handleActionChange}
+           onMouseEnter={() => setIsAddToRoomHovered(true)}
+           onMouseLeave={() => setIsAddToRoomHovered(false)}
+          >      
                 <option value="">Actions</option>
                 <option value="action1">DELETE</option>
                 <option value="action2">Add to room</option>
               </select>
             </label>
-            {/* <button onClick={handlePerformAction}>Perform Action</button> */}
+        {isAddToRoomHovered && selectedAction === 'action2' && (
+          <div className='room-list'>
+            <ul style={{  listStyle: 'none'}}>
+              <li >Room 1</li>
+              <li>Room 2</li>
+            </ul>
+          </div>
+        )}
             </div>
           </div>
         </div>
