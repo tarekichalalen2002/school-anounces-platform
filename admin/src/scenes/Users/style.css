@@ -172,16 +172,21 @@ background: var(--white-light);
 }
 h2{
   color: var(--blue);
-  margin-left: 0.5rem;
+  margin-left: 1rem;
+  padding: 5px;
   margin-right: 0.5rem;
   font-size: 1.5rem;
 }
 .room-container{
 display: inline-block; 
-padding: 1em;
+padding: 0.5rem;
 margin-left: 0.5rem;
 margin-right: 0.5rem;
 width: 22%;
+}
+.hovered {
+  color: var(--red);
+  cursor: pointer;
 }
 
 .box{
@@ -296,16 +301,16 @@ gap: 0.2rem;
   width: 120px;
   height: 30px;
   border-radius: 10px;
-  color: white;
-  background-color: #326789;
+  color: var(--white);
+  background-color: var(--blue);
 }
 
 .request-button button.reject{
   width: 120px;
   height: 30px;
   border-radius: 10px;
-  color: white;
-  background-color: #E65C4F;
+  color: var(--white);
+  background-color: var(--red);
 }
 
 
@@ -336,11 +341,12 @@ gap: 0.2rem;
   transition: height 0.3s ease;
 }
 .textDiv strong{
-  color: #326789;
+  color: var(--blue);
 }
 
 .textDiv p{
   margin-left: 16px;
+  
 }
 
 .textDiv.expanded {
@@ -351,10 +357,10 @@ gap: 0.2rem;
   border: none;
   background: none;
   padding: 0; 
-  margin: 0; /* Supprimer les marges */
-  font: inherit; /* Utiliser la police héritée */
+  margin: 0; 
+  font: inherit; 
   cursor: pointer;
-  color: inherit; /* Utiliser la couleur de texte héritée */
+  color: inherit; 
   text-align: inherit;
   
 }
@@ -362,7 +368,7 @@ gap: 0.2rem;
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: white;
+  background-color: var(--white);
   border: 1px solid #ccc;
   padding: 10px;
   z-index: 1;
@@ -372,7 +378,6 @@ gap: 0.2rem;
 .room-list {
   top: 100%; 
   margin-left: 5rem;
-  /* left:0; */
   background-color: var(--white-light);
   border: 1px solid var(--blue);
   padding: 10px;
@@ -390,7 +395,108 @@ gap: 0.2rem;
   cursor: pointer;
 }
 
+/*report page */
+.report-container{
+  width: 882px;
+  height: 62px;
+  background: #E9EEF4;
+  margin: 20px auto 0;
+  border: 1px;
+  position: relative;
+}
 
+
+.reported-name,.reported-text,.details-icon,.report-checkbox{
+  position: absolute;
+  top: 50%;
+}
+
+.reported-name{
+  margin-left: 75px;
+  transform: translateX(-50%) translateY(-50%);
+  width: 83px;
+  height: 22px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21.78px;
+  color: var(--blue);
+}
+
+.reported-text{
+  left: 350px;
+  transform: translateX(-50%) translateY(-50%);
+  width: 376px;
+  height: 22px;
+  color: var(--blue);
+}
+.reported-text span{
+  color: var(--red);
+}
+
+
+.details-icon{
+  transform: translateX(-50%) translateY(-50%);
+  left: 750px;
+}
+
+
+.report-checkbox{
+  transform: translateX(-50%) translateY(-50%);
+  right: 25px;
+}
+
+.report-container-2{
+  width: 882px;
+  height: auto;
+  border: 1px;
+  background-color: var(--white-light);
+  margin: 20px auto 0;
+}
+
+
+.report-container-2-header{
+  height: 62px;
+  position: relative;
+}
+
+
+.container-details-section{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.details-section{
+  width: 90%;
+  height: auto;
+  display: flex;
+  color: var(--blue);
+  align-items: center;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+.details-section h4{
+  color: var(--red);
+}
+
+.details-section .p1 {
+  margin-left: 53px;
+  word-wrap: break-word;
+  flex: 1;
+}
+
+.details-section .p2 {
+  margin-left: 25px;
+  word-wrap: break-word;
+  flex: 1;
+}
+
+.details-section .p3 {
+  margin-left: 81px;
+  word-wrap: break-word;
+  flex: 1;
+}
 
 
 

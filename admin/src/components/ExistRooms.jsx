@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import image1 from '../scenes/Users/assets/img5.png';
-import image2 from '../scenes/Users/assets/img1.png';
-import image3 from '../scenes/Users/assets/img4.png';
-import image4 from '../scenes/Users/assets/img2.png';
-import image5 from '../scenes/Users/assets/img3.png';
-import profileImage1 from '../scenes/Users/assets/Profile-Male-PNG.png';
+import image1 from '../assets/img5.png';
+import image2 from '../assets/img1.png';
+import image3 from '../assets/img4.png';
+import image4 from '../assets/img2.png';
+import image5 from '../assets/img3.png';
+import profileImage1 from '../assets/Profile-Male-PNG.png';
 import RoomDetails from './RoomDetail';
 
 const ExistingRooms = () => {

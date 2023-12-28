@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import '../App.css';
 import '../scenes/Users/style.css';
 import { FaSearch } from 'react-icons/fa';
-import profileImage1 from '../scenes/Users/assets/Profile-Male-PNG.png';
+import profileImage1 from '../assets/Profile-Male-PNG.png';
 import { FaEllipsisV, FaTrash, FaExchangeAlt } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCommentDots } from '@fortawesome/free-solid-svg-icons';

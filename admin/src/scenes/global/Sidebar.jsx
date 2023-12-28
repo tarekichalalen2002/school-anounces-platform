@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Sidebar.css';
-import { Link, useNavigate, useLocation } from 'react-router-dom';  // Utiliser useNavigate au lieu de useHistory
+import { Link, useNavigate, useLocation } from 'react-router-dom';  
 import { FaCog } from "react-icons/fa";
 import { BiSolidCommentDetail } from "react-icons/bi";
 import { IoMdNotifications } from "react-icons/io";

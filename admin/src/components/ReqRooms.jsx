@@ -46,7 +46,7 @@ const ReqRooms = () =>{
           id: 1,
           title: 'Religious content',
           createdBy: 'amel',
-          date: '2023-11-10',
+          date: '2023/11/10',
           approvedUsers: 20,
           totalUsers: 50,
           theme: 'thème de la demande',
@@ -71,8 +71,8 @@ const ReqRooms = () =>{
                 {/*====================part 1 =====================*/} 
               <div className='request-container-header'>
                 <h3 className='request-title'>{request.title}</h3>
-                <p className='request-creator'>
-                  By:{request.createdBy} | Date: {request.date}
+                <p className='request-creator' style={{color:'var(--blue)'}}>
+                  By {request.createdBy}   {request.date}
                 </p>
                 <div className='request-pourcentage'>
                 <div className='request-pourcentage-text'>
