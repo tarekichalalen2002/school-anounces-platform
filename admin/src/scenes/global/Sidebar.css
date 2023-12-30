@@ -14,15 +14,21 @@
   .menu {
     height: 80%;
     width: 100%;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
  
   
 
- #option:hover {
+ #option:focus{
 cursor: pointer;
-color: var(--red);
 } 
+#option.active {
+  color: var(--red); 
+  font-weight: bold;
+}
+#notif:hover{
+  color: var(--red);
+}
 
   .menuItem {
     display: grid;
@@ -40,6 +46,8 @@ color: var(--red);
     margin-top: 2rem;
     width: 100%;
     margin-left: 8rem;
+    text-decoration: none;
+    color: var(--blue);
     gap: 1rem;
     font-size: 1.5rem;
     font-weight: bold;
