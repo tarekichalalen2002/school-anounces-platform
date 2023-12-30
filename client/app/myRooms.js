@@ -1,76 +1,22 @@
 import React, {useState} from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, ScrollView } from 'react-native';
-import { Header ,Sidebar, DarknessLayer, UsersList } from '../components';
+import { Header ,Sidebar, DarknessLayer, UsersList, ModifyRequestMenu } from '../components';
 import state from '../state';
 import { useSnapshot } from 'valtio';
-import { Sports,Gaming } from "../assets/icons";
-import { users } from "../utils/users";
 import { colors } from '../utils/colors';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Icon2 from "react-native-vector-icons/Ionicons"
 import Icon3 from "react-native-vector-icons/MaterialCommunityIcons"
-
-const myPendingRooms = [
-    {
-      id: 1,
-      requestedAt: "2021/08/01",
-      title:"Travleing",
-      totalInvitations: 42,
-      approuvedInvitations: 12,
-      icon: () => <Gaming color="white"/>,
-      description: "This is room for travelers to talk about traveling and stuff.",
-    },
-    {
-      id:2,
-      requestedAt: "2021/08/01",
-      title:"Food",
-      totalInvitations: 38,
-      approuvedInvitations:22,
-      icon: () => <Sports color="white"/>,
-      description: "This is a food room for food lovers to talk about food and stuff.",
-    }
-]
-
-const myRooms = [
-    {
-        id: 1,
-        title:"Gaming",
-        icon: () => <Gaming color="white"/>,
-        description: "This is a gaming room for gamers to talk about games and stuff.",
-        users: [
-            users[0],
-            users[1],
-            users[5],
-            users[6],
-            users[7],
-            users[8],
-            users[9],
-        ],
-        createdAt: "2021/08/01",
-    },
-    {
-        id:2,
-        title:"Sports",
-        icon: () => <Sports color="white"/>,
-        description: "This is a sports room for sports fans to talk about sports and stuff.",
-        users: [
-            users[0],
-            users[1],
-            users[5],
-            users[6],
-            users[7],
-            users[8],
-            users[9],
-        ],
-        createdAt: "2021/08/01",
-    },
-]
+import { Link } from 'expo-router';
+import { myPendingRooms, myRooms } from '../utils/rooms';
 
 const MyRooms = () => {
   const snap = useSnapshot(state);
   const [isUsersListToggled, setIsUsersListToggled] = useState(false);
   const [usersList, setUsersList] = useState(myRooms[0].users);
   const [roomName, setRoomName] = useState("Gaming");
+  const [selectedRequest, setSelectedRequest] = useState(null)
+
   return (
     <View style={styles.container}>
         <View style={styles.headerContainer}>
@@ -78,7 +24,7 @@ const MyRooms = () => {
         </View>
         <ScrollView style={styles.roomsListContainer}>
 
-{/* _______________________________________________ Validated rooms __________________________________________________________________ */}
+{/* _______________________________________________ Pending rooms __________________________________________________________________ */}
             
             <View style={styles.listTitleContainer}>
               <Text style={styles.listTitle}>Pending rooms:</Text>
@@ -111,17 +57,6 @@ const MyRooms = () => {
                     </View>
 
                     {/*------------------------------------------------------------------------------------*/}
-                    {/* 
-                    {
-                      id: 1,
-                      requestedAt: "2021/08/01",
-                      title:"Travleing",
-                      totalInvitations: 42,
-                      approuvedInvitations: 12,
-                      icon: () => <Gaming color="white"/>,
-                      description: "This is room for travelers to talk about traveling and stuff.",
-                    },
-                    */}
                     
                     <View style={styles.roomContainerBody}>
                         <View style={styles.roomAttribute}>
@@ -140,22 +75,12 @@ const MyRooms = () => {
                             </View>
                           </View>
                         </View>
-                        {/* <View style={{...styles.roomAttribute,alignItems:"center"}}>
-                            <Text style={styles.roomAttributeTitle}>Number of users:</Text>
-                            <TouchableOpacity onPress={() => {
-                              setRoomName(item?.title);
-                              setUsersList(item?.users);
-                              setIsUsersListToggled(true);
-                            }}
-                            style={{flexDirection:"row",gap:15,alignItems:"center"}}
-                            >
-                              <Text style={styles.roomAttributeText}>{item?.users?.length}</Text>
-                              <Icon name='users' size={16} color={colors.dark_blue}/>
-                            </TouchableOpacity>
-                        </View> */}
                     </View>
                     <View style={{flexDirection:"row",justifyContent:"flex-end", width:"100%"}}>
-                        <TouchableOpacity style={{paddingHorizontal:12, borderRadius:20, paddingVertical:8,flexDirection:"row",gap:10, backgroundColor:colors.lentils_orange, alignItems:"center", marginRight:10, marginBottom:10}}>
+                        <TouchableOpacity 
+                        style={{paddingHorizontal:12, borderRadius:20, paddingVertical:8,flexDirection:"row",gap:10, backgroundColor:colors.lentils_orange, alignItems:"center", marginRight:10, marginBottom:10}}
+                        onPress={() => setSelectedRequest(item)}
+                        >
                           <Icon name='pen' color="white" size={15}/>
                           <Text style={{color:"white", fontWeight:"700"}}>Modify request</Text>
                         </TouchableOpacity>
@@ -216,10 +141,13 @@ const MyRooms = () => {
                         </View>
                     </View>
                     <View style={{flexDirection:"row",justifyContent:"flex-end", width:"100%"}}>
-                        <TouchableOpacity style={{paddingHorizontal:12, borderRadius:20, paddingVertical:8,flexDirection:"row",gap:10, backgroundColor:colors.lentils_orange, alignItems:"center", marginRight:10, marginBottom:10}}>
+                        <Link 
+                        style={{paddingHorizontal:12, borderRadius:20, paddingVertical:8,flexDirection:"row",gap:10, backgroundColor:colors.lentils_orange, alignItems:"center", marginRight:10, marginBottom:10}}
+                        href={`/myRoomsSettings/${item?.id}`}
+                        >
                           <Icon2 name='settings-sharp' color="white" size={16}/>
                           <Text style={{color:"white", fontWeight:"700"}}>Advanced settings</Text>
-                        </TouchableOpacity>
+                        </Link>
                     </View>
                 </View>
             ))}
@@ -231,7 +159,8 @@ const MyRooms = () => {
           usersList={usersList}
           roomName={roomName}
         />
-        {snap.isSidebarShown && <DarknessLayer/>}
+        <ModifyRequestMenu selectedRoom={selectedRequest} close ={() => setSelectedRequest(null)}/>
+        {(snap.isSidebarShown || selectedRequest) && <DarknessLayer/>}
         <Sidebar />
     </View>
   );

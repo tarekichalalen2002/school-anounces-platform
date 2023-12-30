@@ -11,6 +11,7 @@ import ResponseInput from "./ResponseInput";
 import MessagesLoading from "./MessagesLoading";
 import OrdinaryLoading from "./OrdinaryLoading";
 import UsersList from "./UsersList";
+import ModifyRequestMenu from "./ModifyRequestMenu";
 
 export {
     Header,
@@ -26,4 +27,5 @@ export {
     MessagesLoading,
     OrdinaryLoading,
     UsersList,
+    ModifyRequestMenu,
 }

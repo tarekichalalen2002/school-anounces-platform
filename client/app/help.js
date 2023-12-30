@@ -8,7 +8,7 @@ const Help = () => {
     const [questoion, setQuestion] = useState('');
     return (
         <View style={styles.container}>
-            <Link href="/rooms/1"
+            <Link href="/settings"
                 style={{ position: 'absolute', top: 20, left: 30, zIndex: 10 }}
             >
                 <Icon name='arrow-left' size={22} color={colors.dark_blue}/>
