@@ -6,7 +6,78 @@ const asyncHandler = require("express-async-handler");
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const csv = require('csvtojson');
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const io = require('../index'); 
 
+
+
+
+
+
+
+// Use passport for Google authentication
+passport.use(new GoogleStrategy({
+  clientID: '759759818799-cb33i7mgtc2159cio27r0cgr4g571ao6.apps.googleusercontent.com',
+  clientSecret: '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',
+  callbackURL: 'http://localhost:3000/api/user/auth/google/callback',
+},
+async (accessToken, refreshToken, profile, done) => {
+  try {
+    let user = await User.findOne({ googleId: profile.id });
+
+    if (!user) {
+      user = new User({
+        firstname: profile.name.givenName,
+        lastname: profile.name.familyName,
+        email: profile.emails[0].value,
+        googleId: profile.id,
+      });
+      await user.save();
+    }
+
+    return done(null, user);
+  } catch (error) {
+    return done(error, false);
+  }
+}));
+
+// Serialize and deserialize user for session management
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (error) {
+    done(error, null);
+  }
+});
+
+exports.googleLogin = passport.authenticate('google', {
+  scope: ['profile', 'email'],
+});
+
+exports.googleLoginCallback = passport.authenticate('google', {
+  failureRedirect: '/login', 
+  session: false,
+}), (req, res) => {
+  
+  const allowedDomain = 'estin'; 
+
+  if (req.user.email.endsWith(`@${allowedDomain}`)) {
+    const token = generateToken(req.user._id);
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      maxAge: 72 * 60 * 60 * 1000,
+    });
+    return res.redirect(`/dashboard?token=${token}`);
+  } else {
+    return res.status(403).json({ error: 'Invalid email domain' });
+  }
+};
 
 
 
@@ -258,3 +329,64 @@ exports.loginUserCtrl = asyncHandler(async (req, res) => {
     }
   });
 
+  exports.createRoomRequest = asyncHandler(async (req, res) => {
+    try {
+      const { roomName } = req.body;
+      const userId = req.user._id;
+      const username = `${req.user.firstname} ${req.user.lastname}`;
+  
+      
+      const user = await User.findById(userId).populate('currentRoom');
+      if (user.currentRoom) {
+        return res.status(400).json({ error: 'You are already in a room' });
+      }
+  
+    
+      const room = new Room({
+        name: roomName,
+        roomadmin: userId,
+        isPending: true,
+      });
+  
+      await room.save();
+  
+      
+      io.emit('createRoomRequest', { roomName, userId, username });
+  
+      res.status(201).json({ message: 'Room creation request sent successfully' });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  exports.handleRoomCreationRequest = asyncHandler(async (req, res) => {
+    try {
+      const { roomName, userId, approve } = req.body;
+      
+      const room = await Room.findOne({
+        name: roomName,
+        roomadmin: userId,
+        isPending: true,
+      });
+  
+      if (!room) {
+        return res.status(404).json({ error: 'Room creation request not found' });
+      }
+  
+      
+      if (approve) {
+        
+        room.isPending = false;
+        await room.save();
+      } else {
+        
+        await room.remove();
+      }
+  
+      io.to(userId).emit('roomCreationResponse', { roomName, approve });
+  
+      res.status(200).json({ message: 'Room creation request handled successfully' });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  });
