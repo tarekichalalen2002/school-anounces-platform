@@ -28,10 +28,10 @@ const defaultRooms = [
         isNotified:false,
         isCurrent:false,
     },
-    {
-        title:"My DMs",
-        icon:() => <Icon name="user-alt" size={20} color="white"/>,
-    }
+    // {
+    //     title:"My DMs",
+    //     icon:() => <Icon name="user-alt" size={20} color="white"/>,
+    // }
 ]
 const otherRooms = [
     {
@@ -141,6 +141,30 @@ const Sidebar = () => {
                             </View>
                         </Link>
                     ))}
+                    <Link href="myDMs" onPress={handlePress}>
+                            <View style={styles.roomContainer}>
+                                <IconContainer Icon={() => <Icon name="user-alt" size={20} color="white"/>} isNotified={true}/>
+                                <Text 
+                                style={{
+                                    ...styles.roomTitle,
+                                    color:true ? colors.lentils_orange : colors.dark_blue,
+                                    fontWeight:true ? "900" : "500",
+                                }}
+                                >
+                                    My DMs
+                                </Text>
+                                {true && (
+                                    <View 
+                                    style={{
+                                        width:7,
+                                        height:7,
+                                        backgroundColor:colors.lentils_orange,
+                                        borderRadius:50,
+                                        marginLeft:"auto",
+                                    }}></View>
+                                )}
+                            </View>
+                        </Link>
                     </View>
                 </View>
 

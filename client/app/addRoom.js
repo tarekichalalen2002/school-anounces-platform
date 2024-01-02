@@ -4,34 +4,16 @@ import {Link} from 'expo-router';
 import { colors } from '../utils/colors';
 import { users } from '../utils/users';
 import Icon from "react-native-vector-icons/AntDesign";
+import  Icon2  from 'react-native-vector-icons/FontAwesome5';
+                
 
 const AddRoom = () => {
-
-    // const createRoom = () => {
-    //     fetch('http://localhost:3000/rooms', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify({name: room}),
-    //     })
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             Alert.alert('Room created successfully');
-    //             setRoom('');
-    //         })
-    //         .catch((error) => {
-    //             console.error('Error:', error);
-    //         });
-    // };
-
     const [studentsListToggled, setStudentsListToggled] = useState(false);
     const [searchText, setSearchText] = useState('');
     const [searchResults, setSearchResults] = useState([]);
-    const [selectedStudents, setSelectedStudents] = useState([]);
-
-
+    const [selectedStudents, setSelectedStudents] = useState(users);
     const value = useState(new Animated.Value(800))[0];
+
     const toggleStudentsList = () => {
         Animated.spring(value, {
             toValue: 0,
@@ -60,7 +42,7 @@ const AddRoom = () => {
     return (
         <SafeAreaView style={styles.container}>
             <Link href="/rooms/0" style={{position:"absolute",left:20,top:10}}>
-                <Icon name="close" size={23} color={colors.dark_blue}/>
+                <Icon2 name='arrow-left' size={22} color={colors.dark_blue}/>
             </Link>
             <Text style={styles.title}>
                 Create a new room
@@ -93,12 +75,23 @@ const AddRoom = () => {
                 <View style={styles.invitationsContainer}>
                     <ScrollView showsVerticalScrollIndicator={true} style={styles.selectedStudents}>
                         {selectedStudents && selectedStudents.map((user) => (
-                            <TouchableOpacity key={user.id}>
-                                <Text>{user.name}</Text>
-                            </TouchableOpacity>
+                            <View key={user.id} style={{
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                justifyContent: 'space-between',
+                                paddingVertical: 2,
+                                paddingHorizontal: 5,
+                            }}>
+                                <Text style={{fontWeight:"600"}}>{user.name}</Text>
+                                <TouchableOpacity 
+                                    onPress={() => setSelectedStudents(selectedStudents.filter((u) => u.id !== user.id))}
+                                >
+                                    <Icon name="close" size={15} color={colors.lentils_orange}/>
+                                </TouchableOpacity>
+                            </View>
                         ))}
                         {selectedStudents.length === 0 && (
-                            <Text>No students selected</Text>
+                            <Text style={{fontWeight:"600"}}>No students selected</Text>
                         )}
                     </ScrollView>
                     <View style={styles.inviteButtonContainer}>

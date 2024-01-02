@@ -80,13 +80,19 @@ const Settings = () => {
                     <View
                     style={styles.iconContainer}
                     >
-                        <Icon2 name="help-circle" color={colors.dark_blue} size={30}/>
+                        <Link href="/help">
+                            <Icon2 name="help-circle" color={colors.dark_blue} size={30}/>
+                        </Link>
                     </View>
                     <View style={styles.settingTextContainer}>
-                        <Text style={styles.settingText}>Help</Text>
+                        <Link href="/help">
+                            <Text style={styles.settingText}>Help</Text>
+                        </Link>
                     </View>
                     <View style={styles.rightChevContainer}>
-                        <Icon name="chevron-right" size={12} color={colors.dark_blue}/>
+                        <Link href="/help">
+                            <Icon name="chevron-right" size={12} color={colors.dark_blue}/>
+                        </Link>
                     </View>
                 </View>
                 <View style={styles.setting}>

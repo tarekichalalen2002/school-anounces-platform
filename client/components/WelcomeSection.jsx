@@ -8,10 +8,6 @@ const WelcomeSection = () => {
     const [currentPage,setCurrentPage] = useState(0);
     const value = useState(new Animated.Value(0))[0];
     const [screenWidth, setScreenWidth] = useState(Dimensions.get('window').width);
-    console.log(screenWidth);
-    useEffect(() => {
-        console.log(value);
-    },[value])
     const slideLeft = () => {
         Animated.spring(value,{
             toValue:0,
@@ -85,7 +81,7 @@ const WelcomeSection = () => {
             fontSize:20,
             textAlign:'center',
             fontWeight:'bold',
-            color:colors.lentils_orange,
+            color:colors.dark_blue,
         },
         text:{
             fontSize:15,

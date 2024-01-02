@@ -1,10 +1,10 @@
 import '../../App.css';
 import '../Users/style.css';
 import React,{useState}  from 'react';
-import '../../App.css';
-import { MdArrowBack } from 'react-icons/md';
-import { MdArrowForward } from 'react-icons/md';
+// import { MdArrowBack } from 'react-icons/md';
+// import { MdArrowForward } from 'react-icons/md';
 import { FaSearch } from 'react-icons/fa';
+import { IoIosArrowDown } from "react-icons/io";
 
 const Reports = () => {
   return (
@@ -27,8 +27,8 @@ const reportsData = [
 
 
 const ReportMain = () => {
-
-    const [searchTerm, setSearchTerm] = useState('');
+  //const [IsVisible, setIsVisible] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
   const [selectAll, setSelectAll] = useState(false);
   const [selectedReportIds, setSelectedReportIds] = useState([]);
   const [selectedReport, setSelectedReport] = useState([]);
@@ -86,7 +86,7 @@ const ReportMain = () => {
          </label>
          <div id='options'>
            <label >
-             <select value={selectedAction} onChange={handleActionChange} style={{}}>
+             <select value={selectedAction} onChange={handleActionChange}  >
                <option value="">Actions</option>
                <option value="action1">DELETE</option>
              </select>
@@ -101,16 +101,18 @@ const ReportMain = () => {
          <>
            {reportsData.map(reportData => (
            <div key={reportData.id} className="report-container">
-           <p>{`${reportData.reporter} has reported a misbehaviour by ${reportData.targetUser}`}</p>
-           <MdArrowForward className="details-icon" onClick={() => handleSeeDetails(reportData.id)} />
-           <label>
-       <input
-  type='checkbox'
-  checked={selectedReportIds.includes(reportData.id)}
-  onChange={() => handleSelectReport(reportData.id)}
-/>
-                    </label>
-  </div>
+            <p className='reported-name'>{reportData.reporter}</p>
+            <p className='reported-text'>has reported a <span>misbehaviour</span> by {reportData.targetUser}</p> 
+            <IoIosArrowDown className="details-icon" onClick={() => handleSeeDetails(reportData.id)} />
+            <label className='report-checkbox'>
+            <input
+            
+            type='checkbox'
+            checked={selectedReportIds.includes(reportData.id)}
+            onChange={() => handleSelectReport(reportData.id)}
+            />
+            </label>
+          </div>
 ))}
 
          </>
@@ -134,25 +136,35 @@ const ReportHeader = () => {
 
 const ReportDetails = ({ report, onBack }) => {
     return (
-        <div>
-        <p>{`${report.reporter} has reported a misbehaviour by ${report.targetUser}`}</p>
-        
-        <div className="details-section">
-          <h4>Report Message</h4>
-          <p>{report.reportMessage}</p>
-        </div>
+        <div className='report-container-2'>
+        <div className='report-container-2-header'>
+            <p className='reported-name'>{report.reporter}</p>
+            <p className='reported-text'>has reported a <span>misbehaviour</span>  by {report.targetUser}</p> 
+            <IoIosArrowDown className="details-icon" onClick={onBack} />
+            <label className='report-checkbox'>
+            <input
+            type='checkbox'
+            
+            />
+            </label>
+            
+        </div> 
+        <div className='container-details-section'>
+          <div className="details-section">
+            <h4>Report Message</h4>
+            <p className='p1'>{report.reportMessage}</p>
+          </div>
   
-        <div className="details-section">
-          <h4>Concerned Message</h4>
-          <p>{report.concernedMessage}</p>
-        </div>
+          <div className="details-section">
+            <h4>Concerned Message</h4>
+            <p className='p2'>{report.concernedMessage}</p>
+          </div>
   
-        <div className="details-section">
-          <h4>Report Date</h4>
-          <p>{report.reportDate}</p>
+          <div className="details-section">
+            <h4>Report Date</h4>
+            <p className='p3'>{report.reportDate}</p>
+          </div>
         </div>
-  
-        <MdArrowBack className="details-icon" onClick={onBack} />
       </div>
     );
   };

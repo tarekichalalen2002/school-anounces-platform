@@ -2,22 +2,21 @@ import React,{useState} from 'react';
 import '../App.css';
 import '../scenes/Users/style.css';
 import { FaSearch } from 'react-icons/fa';
-import profileImage1 from '../scenes/Users/assets/Profile-Male-PNG.png';
+import profileImage1 from '../assets/Profile-Male-PNG.png';
 import { FaEllipsisV, FaTrash, FaExchangeAlt } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCommentDots } from '@fortawesome/free-solid-svg-icons';
-
+import { Link } from 'react-router-dom';
 
 const sampleAdmins = [
     {
       id: 1,
       fullName: 'amel am',
       email: 'amel@estin.dz',
-      adminOfRoom: 'Game',
+      adminOfRoom: 'Shop',
       sinceDate: '2023-03-06',
       profileImage: profileImage1,
     },
-    // Ajoutez d'autres administrateurs ici
   ];
   const AdminRooms = () =>{
     const [searchTerm, setSearchTerm] = useState('');
@@ -57,7 +56,13 @@ const sampleAdmins = [
                   </td>
                   <td><span style={{fontWeight:'bold'}}>{admin.fullName}</span></td>
                   <td>{admin.email}</td>
-                  <td>admin of <span style={{fontWeight:'bold'}}>{admin.adminOfRoom} </span>room</td>
+                  <td>
+                  admin of{' '}
+                  <Link to={`/Rooms/RoomDetails/${admin.adminOfRoom}`} style={{ fontWeight: 'bold' ,textDecoration:'none',color:'var(--blue)'}}>
+                    {admin.adminOfRoom} 
+                  </Link>{' '}
+                  room
+                  </td>                  
                   <td>{admin.sinceDate}</td>
                   <td>
                   <div className="ellipsis-container">
@@ -77,7 +82,6 @@ const sampleAdmins = [
             <li>
             <FontAwesomeIcon icon={faCommentDots} /> Room details
             </li>
-            {/* Ajoutez d'autres options ici */}
           </ul>
         </div>
       )}
