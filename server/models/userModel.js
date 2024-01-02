@@ -52,7 +52,7 @@ userSchema.pre("save", async function (next) {
     next();
   }
   const salt = await bcrypt.genSaltSync(10);
-  this.password = await bcrypt(this.password, salt);
+  this.password = await bcrypt.hash(this.password, salt);
   next();
 });
 userSchema.methods.isPasswordMatched = async function (enteredPassword) {
