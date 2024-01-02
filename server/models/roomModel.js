@@ -13,11 +13,47 @@ const roomSchema = new mongoose.Schema(
         ref: 'User',
       },
     ],
-    roomadmin:{
+    roomadmin: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      required : true,
-    }
+      required: true,
+    },
+    isPending: {
+      type: Boolean,
+      default: true,
+    },
+    messages: [
+      {
+        sender: {
+          id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+          },
+          name: String,
+        },
+        content: String,
+        timestamp: {
+          type: Date,
+          default: Date.now,
+        },
+        type: String, 
+        threadId: String, 
+        responses: [
+          {
+            sender: {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: 'User',
+            },
+            content: String,
+            timestamp: {
+              type: Date,
+              default: Date.now,
+            },
+            threadId: String,
+          },
+        ],
+      },
+    ],
   },
   {
     timestamps: true,
