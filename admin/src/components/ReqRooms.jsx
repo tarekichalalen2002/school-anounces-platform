@@ -46,8 +46,8 @@ const ReqRooms = () =>{
           id: 1,
           title: 'Religious content',
           createdBy: 'amel',
-          date: '2023/11/10',
-          approvedUsers: 20,
+          date: '2023-11-10',
+          approvedUsers: 30,
           totalUsers: 50,
           theme: 'thème de la demande',
         },
@@ -56,10 +56,12 @@ const ReqRooms = () =>{
       const progressWidth = (pendingRequestsData[0].approvedUsers / pendingRequestsData[0].totalUsers) * 100;
 
       const handleApprove = (requestId) => {
+        // Logique pour approuver la demande avec l'ID requestId
         console.log(`Demande approuvée avec l'ID : ${requestId}`);
       };
     
       const handleReject = (requestId) => {
+        // Logique pour rejeter la demande avec l'ID requestId
         console.log(`Demande rejetée avec l'ID : ${requestId}`);
       };
     
@@ -71,8 +73,8 @@ const ReqRooms = () =>{
                 {/*====================part 1 =====================*/} 
               <div className='request-container-header'>
                 <h3 className='request-title'>{request.title}</h3>
-                <p className='request-creator' style={{color:'var(--blue)'}}>
-                  By {request.createdBy}   {request.date}
+                <p className='request-creator'>
+                  By:{request.createdBy} | Date: {request.date}
                 </p>
                 <div className='request-pourcentage'>
                 <div className='request-pourcentage-text'>
@@ -107,12 +109,19 @@ const ReqRooms = () =>{
                   </div>
                 </div>
               
-                <div className='request-button'>
-                <button className='voir' onClick={toggleExpanded}>
-                  {expanded ? 'See Less' : 'See More'}
-                </button>
+                <div className='request-button-container'>
+                  <div className='request-button'>
+
+
+                  <div className='voir' onClick={toggleExpanded}>
+                  {expanded ? 'Voir moins' : 'Voir plus'}
+                </div>
                   <button className='approve' onClick={() => handleApprove(request.id)}>Approve <FaCheck /></button>
                   <button className='reject' onClick={() => handleReject(request.id)}>Reject <FaRegTrashAlt /></button>
+
+
+                  </div>
+                
                 </div>
               </div>
               </div>

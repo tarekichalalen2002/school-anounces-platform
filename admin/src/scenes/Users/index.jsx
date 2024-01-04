@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import {Link} from 'react-router-dom';
 import '../../App.css';
 import './style.css';
 import AddUsers from '../../components/AddUsers';
@@ -36,7 +37,7 @@ return (
         className={`button ${activeTab === 'list' ? 'active' : ''}`}
         onClick={() => handleButtonClick('list')}
       >
-        List of Users
+          List of Users
       </button>
       <button
         className={`button ${activeTab === 'add' ? 'active' : ''}`}

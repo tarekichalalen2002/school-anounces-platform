@@ -1,9 +1,8 @@
-import React,{useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import '../App.css';
 import '../scenes/Users/style.css';
 import { FaSearch } from 'react-icons/fa';
 import profileImage1 from '../assets/Profile-Male-PNG.png';
-
 
 const sampleUsers = [
     {
@@ -16,6 +15,8 @@ const sampleUsers = [
     {
       id: 2,
       fullName: 'Amel mamal',
+      
+     
       email: 'amel@estin.dz',
       dateJoining: '2023-03-01',
       profileImage: profileImage1,
@@ -41,11 +42,42 @@ const sampleUsers = [
     const [selectAll, setSelectAll] = useState(false);
     const [selectedUsers, setSelectedUsers] = useState([]);
     const [selectedAction, setSelectedAction] = useState('');
+    const [users, setUsers] = useState([]);
     const [isAddToRoomHovered, setIsAddToRoomHovered] = useState(false);
+
+    useEffect(() => {
+      fetch('http://localhost:5000/api/user')  
+        .then(response => response.json())
+        .then(data => setUsers(data))
+        .catch(error => console.log(error));
+    }, []);
     const handleSearch = (e) => {
       setSearchTerm(e.target.value);
     };
     
+    const handleDeleteUser = () => {
+      // Vérifie si l'action est DELETE et des utilisateurs sont sélectionnés
+      if (selectedAction === 'action1' && selectedUsers.length > 0) {
+        // Envoie une requête pour supprimer les utilisateurs sélectionnés
+        selectedUsers.forEach(userId => {
+          fetch(`http://localhost:5000/api/user/${userId}`, {
+            method: 'DELETE',
+          })
+            .then(response => {
+              if (response.ok) {
+                // Met à jour la liste des utilisateurs après la suppression
+                setUsers(users.filter(user => user._id !== userId));
+              } else {
+                console.error('Erreur lors de la suppression de l\'utilisateur');
+              }
+            })
+            .catch(error => console.error('Erreur réseau:', error));
+        });
+  
+        // Réinitialise la liste des utilisateurs sélectionnés
+        setSelectedUsers([]);
+      }
+    }
     const handleSelectAll = () => {
       setSelectAll(!selectAll);
       setSelectedUsers(selectAll ? [] : sampleUsers.map((user) => user.id));
@@ -62,11 +94,11 @@ const sampleUsers = [
     const handleActionChange = (e) => {
       setSelectedAction(e.target.value);
     };
-  
+    
     return (
       <div style={{height:'81.2%'}}>
         <div className='top-container'>
-        <div id="search-container">
+        <div id="search-container" style={{margin:'2rem'}}>
           <input
             type="text"
             placeholder="Search in users ..."
@@ -101,6 +133,7 @@ const sampleUsers = [
             </ul>
           </div>
         )}
+        <button onClick={handleDeleteUser} style={{margin:'10px',width:'80px',height:'30px'}}>Apply</button>
             </div>
           </div>
         </div>
@@ -117,32 +150,32 @@ const sampleUsers = [
           </thead>
           <tbody>
             
-            {sampleUsers
-              .filter(
-                (user) =>
-                  user.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                  user.email.toLowerCase().includes(searchTerm.toLowerCase())
-              )
-              .map((user) => (
-                <tr key={user.id}
-                >
-                  <td>
-                    <img src={user.profileImage} alt={`${user.fullName}`} />
-                  </td>
-                  <td style={{ color: selectedUsers.includes(user.id) ?'var(--red)':'var(--green)' }}>{user.fullName}</td>
-                  <td style={{ color: selectedUsers.includes(user.id) ?'var(--red)':'var(--green)' }}>{user.email}</td>
-                  <td style={{ color: selectedUsers.includes(user.id) ?'var(--red)':'var(--green)' }}>{user.dateJoining}</td>
-                  <td>
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={selectedUsers.includes(user.id)}
-                        onChange={() => handleSelectUser(user.id)}
-                      />
-                    </label>
-                  </td>
-                </tr>
-              ))}
+          {users
+  .filter(
+    (user) =>
+      user.firstname.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase())
+  )
+  .map((user) => (
+    <tr key={user._id}>
+      <td>
+        <img src={user.profileImage} alt={`${user.firstname} ${user.lastname}`} />
+      </td>
+      <td style={{ color: selectedUsers.includes(user._id) ? 'var(--red)' : 'var(--green)' }}>{`${user.firstname} ${user.lastname}`}</td>
+      <td style={{ color: selectedUsers.includes(user._id) ? 'var(--red)' : 'var(--green)' }}>{user.email}</td>
+      <td style={{ color: selectedUsers.includes(user._id) ? 'var(--red)' : 'var(--green)' }}>{user.createdAt}</td>
+      <td>
+        <label>
+          <input
+            type="checkbox"
+            checked={selectedUsers.includes(user._id)}
+            onChange={() => handleSelectUser(user._id)}
+          />
+        </label>
+      </td>
+    </tr>
+  ))}
+
           </tbody>
         </table>
       </div>

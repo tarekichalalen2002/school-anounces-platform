@@ -43,7 +43,7 @@
   background: gray;
 }
 .main{
-  background-image: url("./scenes/Users/assets/yo.png");
+  background-image: url("./assets/yo.png");
   height: 100vh;
   font-family: 'Source Sans Pro','san-serif';
   background-repeat: no-repeat;
