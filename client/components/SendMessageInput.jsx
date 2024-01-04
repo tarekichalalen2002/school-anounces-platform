@@ -6,7 +6,29 @@ import Icon2 from "react-native-vector-icons/Entypo";
 import Icon3 from "react-native-vector-icons/Ionicons";
 import state from "../state";
 import { useSnapshot } from "valtio";
-const SendMessageInput = () => {
+import socket from "../socketio";
+import { getUserData } from "../asyncStorage/user";
+
+const SendMessageInput = ({roomId}) => {
+    const [user,setUser] = useState({})
+    useEffect(() => {
+        getUserData().then((user) => {
+            setUser(user)
+        })
+    },[])
+
+    const [content,setContent] = useState("")
+
+    const sendMessage = async () => {
+        const message = {
+            content,
+            roomId:roomId,
+            sender:{_id:user._id,name:`${user.firstName} ${user.lastName}`},
+            timestamp:Date.now(),
+        }
+        socket.emit("newMessage",{message,roomId})
+    }
+
     const snap = useSnapshot(state)
     const value = useState(new Animated.Value(800))[0]
     const showInput = () => {
@@ -111,7 +133,7 @@ const SendMessageInput = () => {
                     <TouchableOpacity>
                         <Icon2 name="camera" size={22} color={colors.dark_blue} />
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={async () => await sendMessage()}>
                         <Icon3 name="send" size={22} color={colors.dark_blue} />
                     </TouchableOpacity>
                 </View>
@@ -126,6 +148,9 @@ const SendMessageInput = () => {
                 <View style={styles.messageInputContainer}>
                     <TextInput
                     style={styles.messageInput}
+                    value={content}
+                    onChangeText={(text) => setContent(text)}
+
                     placeholder="Write your message here ..."
                     />
                 </View>

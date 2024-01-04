@@ -5,7 +5,8 @@ const state = proxy({
     isSidebarShown:false,
     isResponseInputShown:false,
     messageResponseData:{},
-    isNotified: true
+    isNotified: true,
+    token:'',
 })
 
 

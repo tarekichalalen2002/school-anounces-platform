@@ -1,4 +1,4 @@
-const mongoose = require("mongoose"); 
+const mongoose = require("mongoose");
 
 const roomSchema = new mongoose.Schema(
   {
@@ -10,24 +10,28 @@ const roomSchema = new mongoose.Schema(
     students: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: "User",
       },
     ],
     roomadmin: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      ref: "User",
       required: true,
     },
     isPending: {
       type: Boolean,
       default: true,
     },
+    isGeneral: {
+      type: Boolean,
+      default: false,
+    },
     messages: [
       {
         sender: {
           id: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
+            ref: "User",
           },
           name: String,
         },
@@ -36,13 +40,13 @@ const roomSchema = new mongoose.Schema(
           type: Date,
           default: Date.now,
         },
-        type: String, 
-        threadId: String, 
+        type: String,
+        threadId: String,
         responses: [
           {
             sender: {
               type: mongoose.Schema.Types.ObjectId,
-              ref: 'User',
+              ref: "User",
             },
             content: String,
             timestamp: {

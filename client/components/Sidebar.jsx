@@ -8,46 +8,13 @@ import Icon3 from "react-native-vector-icons/MaterialIcons"
 import state from "../state";
 import { useSnapshot } from "valtio";
 import { Link } from "expo-router"
+import { getUserRooms } from "../asyncStorage/rooms";
+import { deleteUserData } from "../asyncStorage/user";
+import { useRouter } from "expo-router";
 
-const defaultRooms = [
-    {
-        title:"Lost objectsss",
-        icon:Lost,
-        isNotified:false,
-        isCurrent:true,
-    },
-    {
-        title:"Found objects",
-        icon:Found,
-        isNotified:true,
-        isCurrent:false,
-    },
-    {
-        title:"Shop",
-        icon:Shop,
-        isNotified:false,
-        isCurrent:false,
-    },
-    // {
-    //     title:"My DMs",
-    //     icon:() => <Icon name="user-alt" size={20} color="white"/>,
-    // }
-]
-const otherRooms = [
-    {
-        title:"Sports",
-        icon: Sports,
-        isNotified:false,
-        isCurrent:false,
-    },
-    {
-        title:"Gaming",
-        icon: Gaming,
-        isNotified:true,
-        isCurrent:false,
-    }
-]
+
 const Sidebar = () => {
+    const router = useRouter()
     const snap = useSnapshot(state)
     const value = useState(new Animated.Value(-400))[0]
     const toggleSidebar = () => {
@@ -77,22 +44,26 @@ const Sidebar = () => {
         state.isSidebarShown = false
     }
 
-
-    const IconContainer = ({Icon,isNotified}) => {
-        return (
-            <View style={{
-                width:45,
-                height:45,
-                borderRadius:50,
-                backgroundColor:isNotified ? colors.lentils_orange : colors.dark_blue,
-                flexDirection:"row",
-                justifyContent:"center",
-                alignItems:"center",
-            }}>
-                <Icon color="white"/>
-            </View>
-        )
+    const getRooms = async () => {
+        const rooms = await getUserRooms()
+        if(rooms){
+            setDefaultRooms(rooms.filter(room => room.isGeneral))
+            setOtherRooms(rooms.filter(room => !room.isGeneral && !room.isPending))
+        }
     }
+    const [defaultRooms,setDefaultRooms] = useState([])
+    const [otherRooms,setOtherRooms] = useState([])
+
+    useEffect(() => {
+        getRooms()
+    },[])
+
+    const logout = async () => {
+        await deleteUserData()
+        state.token = null
+        router.replace("/login")
+    }
+
     return(
         <Animated.ScrollView
         style={{...styles.container,left:-20,transform:[{translateX:value}]}}
@@ -115,10 +86,10 @@ const Sidebar = () => {
                     <View
                     style = {styles.roomsContainer}
                     >
-                    {defaultRooms.map((room,index) => (
-                        <Link href={`/rooms/${index}`} key={index} onPress={handlePress}>
+                    {defaultRooms && defaultRooms?.map((room,index) => (
+                        <Link href={`/rooms/${room._id}`} key={index} onPress={handlePress}>
                             <View style={styles.roomContainer}>
-                                <IconContainer Icon={room.icon} isNotified={room.isNotified}/>
+                                {/* <IconContainer Icon={room.icon} isNotified={room.isNotified}/> */}
                                 <Text 
                                 style={{
                                     ...styles.roomTitle,
@@ -126,7 +97,7 @@ const Sidebar = () => {
                                     fontWeight:room.isCurrent ? "900" : "500",
                                 }}
                                 >
-                                    {room.title}
+                                    {room.name}
                                 </Text>
                                 {room.isNotified && (
                                     <View 
@@ -143,7 +114,7 @@ const Sidebar = () => {
                     ))}
                     <Link href="myDMs" onPress={handlePress}>
                             <View style={styles.roomContainer}>
-                                <IconContainer Icon={() => <Icon name="user-alt" size={20} color="white"/>} isNotified={true}/>
+                                {/* <IconContainer Icon={() => <Icon name="user-alt" size={20} color="white"/>} isNotified={true}/> */}
                                 <Text 
                                 style={{
                                     ...styles.roomTitle,
@@ -181,10 +152,10 @@ const Sidebar = () => {
                     <View
                     style = {styles.roomsContainer}
                     >
-                    {otherRooms.map((room,index) => (
-                        <TouchableOpacity key={index} onPress={handlePress}>
+                    {otherRooms && otherRooms?.map((room,index) => (
+                        <Link key={index} href={`/rooms/${room._id}`} onPress={handlePress}>
                         <View style={styles.roomContainer}>
-                            <IconContainer Icon={room.icon} isNotified={room.isNotified}/>
+                            {/* <IconContainer Icon={room.icon} isNotified={room.isNotified}/> */}
                             <Text 
                             style={{
                                 ...styles.roomTitle,
@@ -192,7 +163,7 @@ const Sidebar = () => {
                                 fontWeight:room.isCurrent ? "900" : "500",
                             }}
                             >
-                                {room.title}
+                                {room.name}
                             </Text>
                             {room.isNotified && (
                                 <View 
@@ -205,7 +176,7 @@ const Sidebar = () => {
                                 }}></View>
                             )}
                         </View>
-                    </TouchableOpacity>
+                    </Link>
                     ))}
                     </View>
                 </View>
@@ -232,7 +203,10 @@ const Sidebar = () => {
                 </Link>
                 <Link
                 href="/login"
-                onPress={handlePress}
+                onPress={() => {
+                    handlePress()
+                    logout()
+                }}
                 >
                     <Icon3 name="logout" color={colors.dark_blue} size={35}/>
                 </Link>
@@ -274,8 +248,9 @@ const styles = StyleSheet.create({
     roomContainer: {
         width:"100%",
         flexDirection:"row",
-        gap:20,
+        gap:40,
         alignItems:"center",
+
     },
     roomTitle: {
         fontSize:16,

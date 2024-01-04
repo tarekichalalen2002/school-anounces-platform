@@ -4,12 +4,13 @@ import { colors } from "../utils/colors";
 import Icon from "react-native-vector-icons/Ionicons";
 import DateSeparator from "./DateSeparator";
 import state from "../state";
+import io from "socket.io-client";
 // import { ResponseInput } from "./ResponseInput";
 // import state from "../state";
 // import { useSnapshot } from "valtio";
 
-const Message = ({ message, isFirstOfDay, isNew, title, date, isImageJoined, time }) => {
-  // const snap = useSnapshot(state)
+const Message = ({message}) => {
+  const {content,sender,timestamp,type} = JSON.parse(JSON.parse(message))
   const [isResponseinputToggled, setIsResponseinputToggled] = useState(false);
   const responseInputHeight = 100
     const value = useState(new Animated.Value(0))[0]
@@ -44,11 +45,11 @@ const Message = ({ message, isFirstOfDay, isNew, title, date, isImageJoined, tim
       marginTop:10,
     }}
     >
-      {isFirstOfDay && <DateSeparator date={date} />}
+      {/* {isFirstOfDay && <DateSeparator date={date} />} */}
     <View
       style={{
         ...styles.container,
-        backgroundColor: isNew ? colors.light_blue : "white",
+        // backgroundColor: isNew ? colors.light_blue : "white",
       }}
     >
       
@@ -57,15 +58,14 @@ const Message = ({ message, isFirstOfDay, isNew, title, date, isImageJoined, tim
       </View>
       <View style={styles.messageContent}>
         <View style={styles.messageHeader}>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.date}>{date} </Text>
-          <Text style={styles.time}>{time}</Text>
+          {/* <Text style={styles.title}>{title}</Text> */}
+          <Text style={styles.date}>{Date(timestamp)} </Text>
         </View>
         <View>
-          <Text style={styles.message}>{message}</Text>
+          <Text style={styles.message}>{content}</Text>
         </View>
         
-          {isImageJoined && (
+          {/* {isImageJoined && (
             <View style={styles.imagesList}>
               <View style={styles.objectImageContainer}>
                 <Image 
@@ -75,7 +75,7 @@ const Message = ({ message, isFirstOfDay, isNew, title, date, isImageJoined, tim
                 />
               </View>
             </View>
-          )}
+          )} */}
           <View
           style={styles.respondButtonWrapper}
           >
