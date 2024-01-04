@@ -5,6 +5,9 @@ import Sidebar from './scenes/global/Sidebar';
 import Rooms from './scenes/Rooms';
 import Users from './scenes/Users';
 import Assistance from './scenes/Assistance';
+import ListUsers from './components/ListUsers';
+import AddUsers from './components/AddUsers';
+import AdminRooms from './components/AdminRooms';
 import Reports from './scenes/Reports';
 import LoginPage from './scenes/LoginPage';
 import ExistingRooms from './components/ExistRooms';
@@ -26,6 +29,9 @@ function App() {
         <Routes>
           <Route path="/Rooms" element={<Rooms />} />
           <Route path="/Users" element={<Users />} />
+          <Route path="/Users/ListUsers" element={<ListUsers />} />
+          <Route path="/Users/AddUsers" element={<AddUsers />} />
+          <Route path="/Users/AdminRooms" element={<AdminRooms />} />
           <Route path="/Reports" element={<Reports />} />
           <Route path="/Assistance" element={<Assistance />} />
           <Route path="/Rooms" element={<ExistingRooms />} />

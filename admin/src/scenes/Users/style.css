@@ -39,11 +39,10 @@ table img {
   }
   
   #search-container {
-    width: 50%;
-    margin: 2rem;
+    width: 55%;
+    margin: 0.5rem;
     height: 40px;
-    margin-left: 12rem;
-    margin-top: 1rem;
+    margin-left:2rem;
     border-radius: 10px;
     border: 1px solid var(--blue);
     line-height: 1;
@@ -162,7 +161,7 @@ Link{
 }
 .drop-container{
 width: 22rem;
-height: 8rem;
+height: 5rem;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -226,6 +225,7 @@ gap: 0.2rem;
   width: 20%;
 
 }
+
 .request-container{
   background: #E9EEF4;
   margin-top: 25px;
@@ -335,34 +335,33 @@ gap: 0.2rem;
   margin-top: 10px;
 }
 
-.textDiv {
-  height: 60px;
-  overflow: hidden;
-  transition: height 0.3s ease;
-}
 .textDiv strong{
   color: var(--blue);
-}
-
-.textDiv p{
-  margin-left: 16px;
-  
 }
 
 .textDiv.expanded {
   height: auto;
 }
+.request-button-container{
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+}
+
+.textDiv {
+  height: 60px;
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+
+.textDiv p{
+  margin-left: 16px;
+}
 
 .voir{
-  border: none;
-  background: none;
-  padding: 0; 
-  margin: 0; 
-  font: inherit; 
+  color: #326789;
   cursor: pointer;
-  color: inherit; 
-  text-align: inherit;
-  
 }
 .room-card {
   position: absolute;
@@ -373,7 +372,6 @@ gap: 0.2rem;
   padding: 10px;
   z-index: 1;
 }
-
 
 .room-list {
   top: 100%; 

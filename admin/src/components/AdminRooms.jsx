@@ -31,7 +31,7 @@ const sampleAdmins = [
     };
     return (
       <div>
-         <div id="search-container">
+         <div id="search-container" style={{margin:'2rem',marginLeft:'15rem'}}>
           <input
             type="text"
             placeholder="Search in users ..."
@@ -80,7 +80,10 @@ const sampleAdmins = [
               <FaExchangeAlt /> Replace
             </li>
             <li>
-            <FontAwesomeIcon icon={faCommentDots} /> Room details
+            <FontAwesomeIcon icon={faCommentDots} /> 
+                  <Link to={`/Rooms/RoomDetails/${admin.adminOfRoom}`} style={{ textDecoration:'none',color:'var(--blue)'}}> 
+                  Room details
+                  </Link>
             </li>
           </ul>
         </div>
